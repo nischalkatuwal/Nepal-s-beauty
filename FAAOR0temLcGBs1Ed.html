@@ -1,0 +1,182 @@
+<html><head><base href="https://nepal-beauty.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Nepal's Breathtaking Beauty</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body, html {
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+        background-color: #f0f0f0;
+        color: #333;
+    }
+    .header {
+        height: 100vh;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://nepal-beauty.com/images/nepal-mountains.jpg') no-repeat center center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+    }
+    .header h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0;
+    }
+    .header p {
+        font-size: 1.5rem;
+        opacity: 0;
+    }
+    .section {
+        padding: 5rem 10%;
+        margin: 2rem 0;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #2c3e50;
+    }
+    .section p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+    .gallery-item {
+        width: 30%;
+        margin-bottom: 2rem;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .gallery-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: #e74c3c;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+        background-color: #c0392b;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1>Discover Nepal's Beauty</h1>
+            <p>A journey through the land of Himalayas</p>
+        </div>
+    </header>
+
+    <section class="section" id="about">
+        <h2>About Nepal</h2>
+        <p>Nepal, a country nestled in the lap of the Himalayas, is a land of breathtaking natural beauty and rich cultural heritage. From the towering peaks of Mount Everest to the lush jungles of Chitwan, Nepal offers a diverse landscape that captivates the hearts of all who visit.</p>
+        <p>Explore ancient temples, trek through pristine mountains, and experience the warmth of Nepalese hospitality. Nepal is not just a destination; it's an experience that will stay with you forever.</p>
+    </section>
+
+    <section class="section" id="attractions">
+        <h2>Top Attractions</h2>
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="https://nepal-beauty.com/images/everest.jpg" alt="Mount Everest, world's highest peak" width="300" height="200">
+            </div>
+            <div class="gallery-item">
+                <img src="https://nepal-beauty.com/images/annapurna.jpg" alt="Annapurna mountain range" width="300" height="200">
+            </div>
+            <div class="gallery-item">
+                <img src="https://nepal-beauty.com/images/pokhara.jpg" alt="Phewa Lake in Pokhara" width="300" height="200">
+            </div>
+            <div class="gallery-item">
+                <img src="https://nepal-beauty.com/images/chitwan.jpg" alt="Chitwan National Park" width="300" height="200">
+            </div>
+            <div class="gallery-item">
+                <img src="https://nepal-beauty.com/images/kathmandu.jpg" alt="Kathmandu Durbar Square" width="300" height="200">
+            </div>
+            <div class="gallery-item">
+                <img src="https://nepal-beauty.com/images/lumbini.jpg" alt="Lumbini, birthplace of Buddha" width="300" height="200">
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="visit">
+        <h2>Plan Your Visit</h2>
+        <p>Ready to experience the beauty of Nepal? Start planning your unforgettable journey today!</p>
+        <a href="https://nepal-beauty.com/plan-your-trip" class="cta-button">Plan Your Trip</a>
+    </section>
+
+    <section class="section" id="location">
+        <h2>Where is Nepal?</h2>
+        <div id="map"></div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(".header h1", {opacity: 1, duration: 1, delay: 0.5});
+        gsap.to(".header p", {opacity: 1, duration: 1, delay: 1});
+
+        gsap.utils.toArray(".section").forEach(section => {
+            gsap.to(section, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        function initMap() {
+            const nepal = {lat: 28.3949, lng: 84.1240};
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: nepal
+            });
+            new google.maps.Marker({
+                position: nepal,
+                map: map,
+                title: 'Nepal'
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body></html>
